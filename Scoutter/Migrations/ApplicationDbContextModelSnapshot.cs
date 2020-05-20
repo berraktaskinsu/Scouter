@@ -7,6 +7,7 @@ using Scoutter.Data;
 
 namespace Scoutter.Migrations
 {
+    // Linked to Initial Migrations somehow
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {

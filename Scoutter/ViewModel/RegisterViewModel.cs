@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 namespace Scoutter.ViewModel
 {
+    // RegisterViewModel.cs
+    // RegisterView uses this model
     public class RegisterViewModel
     {
         [Required]

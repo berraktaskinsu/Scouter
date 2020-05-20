@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Scoutter.Migrations
 {
+    // Initial Migrations: Database Tables
     public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
