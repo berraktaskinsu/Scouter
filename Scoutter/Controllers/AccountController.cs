@@ -13,20 +13,27 @@ namespace Scoutter.Controllers
 {
     public class AccountController : Controller
     {
-        
+        // User, Sign In and Sign Up Managers
+        // IdentityUser -> ApplicationUser : for reasons explained in ApplicationDbContext
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+
+        // Constructor - set managers
         public AccountController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+
+
         public IActionResult Register()
         {
             return View();
         }
 
+        // Takes in RegisterViewModel, called upon register button clicked
+        // If valid, creates new ApplicationUser according to data fed to RegisterViewModel
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -40,10 +47,11 @@ namespace Scoutter.Controllers
                     Email = model.Email,
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                if (result.Succeeded) // Register Successful
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
+                    // Register Successful - Signed In
                 }
 
                 foreach (var error in result.Errors)
